@@ -1,0 +1,13 @@
+.DS_Store
+
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# Local, hors dépôt
+A/
+
+# Binaires de distribution
+Apps/
