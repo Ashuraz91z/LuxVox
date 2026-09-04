@@ -1,0 +1,549 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 110;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		038E705C304AC2D500F72D77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 038E7046304AC2D300F72D77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 038E704D304AC2D300F72D77;
+			remoteInfo = "Lux Vox";
+		};
+		038E7066304AC2D500F72D77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 038E7046304AC2D300F72D77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 038E704D304AC2D300F72D77;
+			remoteInfo = "Lux Vox";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		038E704E304AC2D300F72D77 /* Lux Vox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lux Vox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		038E705B304AC2D500F72D77 /* Lux VoxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lux VoxTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		038E7065304AC2D500F72D77 /* Lux VoxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lux VoxUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		038E7050304AC2D300F72D77 /* Lux Vox */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Lux Vox";
+			sourceTree = "<group>";
+		};
+		038E705E304AC2D500F72D77 /* Lux VoxTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Lux VoxTests";
+			sourceTree = "<group>";
+		};
+		038E7068304AC2D500F72D77 /* Lux VoxUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Lux VoxUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		038E704B304AC2D300F72D77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		038E7058304AC2D500F72D77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		038E7062304AC2D500F72D77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		038E7045304AC2D300F72D77 = {
+			isa = PBXGroup;
+			children = (
+				038E7050304AC2D300F72D77 /* Lux Vox */,
+				038E705E304AC2D500F72D77 /* Lux VoxTests */,
+				038E7068304AC2D500F72D77 /* Lux VoxUITests */,
+				038E704F304AC2D300F72D77 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		038E704F304AC2D300F72D77 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				038E704E304AC2D300F72D77 /* Lux Vox.app */,
+				038E705B304AC2D500F72D77 /* Lux VoxTests.xctest */,
+				038E7065304AC2D500F72D77 /* Lux VoxUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		038E704D304AC2D300F72D77 /* Lux Vox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 038E706D304AC2D500F72D77 /* Build configuration list for PBXNativeTarget "Lux Vox" */;
+			buildPhases = (
+				038E704A304AC2D300F72D77 /* Sources */,
+				038E704B304AC2D300F72D77 /* Frameworks */,
+				038E704C304AC2D300F72D77 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				038E7050304AC2D300F72D77 /* Lux Vox */,
+			);
+			name = "Lux Vox";
+			productName = "Lux Vox";
+			productReference = 038E704E304AC2D300F72D77 /* Lux Vox.app */;
+			productType = "com.apple.product-type.application";
+		};
+		038E705A304AC2D500F72D77 /* Lux VoxTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 038E7070304AC2D500F72D77 /* Build configuration list for PBXNativeTarget "Lux VoxTests" */;
+			buildPhases = (
+				038E7057304AC2D500F72D77 /* Sources */,
+				038E7058304AC2D500F72D77 /* Frameworks */,
+				038E7059304AC2D500F72D77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				038E705D304AC2D500F72D77 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				038E705E304AC2D500F72D77 /* Lux VoxTests */,
+			);
+			name = "Lux VoxTests";
+			productName = "Lux VoxTests";
+			productReference = 038E705B304AC2D500F72D77 /* Lux VoxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		038E7064304AC2D500F72D77 /* Lux VoxUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 038E7073304AC2D500F72D77 /* Build configuration list for PBXNativeTarget "Lux VoxUITests" */;
+			buildPhases = (
+				038E7061304AC2D500F72D77 /* Sources */,
+				038E7062304AC2D500F72D77 /* Frameworks */,
+				038E7063304AC2D500F72D77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				038E7067304AC2D500F72D77 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				038E7068304AC2D500F72D77 /* Lux VoxUITests */,
+			);
+			name = "Lux VoxUITests";
+			productName = "Lux VoxUITests";
+			productReference = 038E7065304AC2D500F72D77 /* Lux VoxUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		038E7046304AC2D300F72D77 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					038E704D304AC2D300F72D77 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					038E705A304AC2D500F72D77 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = 038E704D304AC2D300F72D77;
+					};
+					038E7064304AC2D500F72D77 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = 038E704D304AC2D300F72D77;
+					};
+				};
+			};
+			buildConfigurationList = 038E7049304AC2D300F72D77 /* Build configuration list for PBXProject "Lux Vox" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 038E7045304AC2D300F72D77;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 038E704F304AC2D300F72D77 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				038E704D304AC2D300F72D77 /* Lux Vox */,
+				038E705A304AC2D500F72D77 /* Lux VoxTests */,
+				038E7064304AC2D500F72D77 /* Lux VoxUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		038E704C304AC2D300F72D77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		038E7059304AC2D500F72D77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		038E7063304AC2D500F72D77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		038E704A304AC2D300F72D77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		038E7057304AC2D500F72D77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		038E7061304AC2D500F72D77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		038E705D304AC2D500F72D77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 038E704D304AC2D300F72D77 /* Lux Vox */;
+			targetProxy = 038E705C304AC2D500F72D77 /* PBXContainerItemProxy */;
+		};
+		038E7067304AC2D500F72D77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 038E704D304AC2D300F72D77 /* Lux Vox */;
+			targetProxy = 038E7066304AC2D500F72D77 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		038E706B304AC2D500F72D77 /* Debug configuration for PBXProject "Lux Vox" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = S57686D5DQ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		038E706C304AC2D500F72D77 /* Release configuration for PBXProject "Lux Vox" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = S57686D5DQ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		038E706E304AC2D500F72D77 /* Debug configuration for PBXNativeTarget "Lux Vox" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S57686D5DQ;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "lux-audere.Lux-Vox";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		038E706F304AC2D500F72D77 /* Release configuration for PBXNativeTarget "Lux Vox" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S57686D5DQ;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "lux-audere.Lux-Vox";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		038E7071304AC2D500F72D77 /* Debug configuration for PBXNativeTarget "Lux VoxTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S57686D5DQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "lux-audere.Lux-VoxTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lux Vox.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lux Vox";
+			};
+			name = Debug;
+		};
+		038E7072304AC2D500F72D77 /* Release configuration for PBXNativeTarget "Lux VoxTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S57686D5DQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "lux-audere.Lux-VoxTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lux Vox.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lux Vox";
+			};
+			name = Release;
+		};
+		038E7074304AC2D500F72D77 /* Debug configuration for PBXNativeTarget "Lux VoxUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S57686D5DQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "lux-audere.Lux-VoxUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Lux Vox";
+			};
+			name = Debug;
+		};
+		038E7075304AC2D500F72D77 /* Release configuration for PBXNativeTarget "Lux VoxUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S57686D5DQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "lux-audere.Lux-VoxUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Lux Vox";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		038E7049304AC2D300F72D77 /* Build configuration list for PBXProject "Lux Vox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				038E706B304AC2D500F72D77 /* Debug configuration for PBXProject "Lux Vox" */,
+				038E706C304AC2D500F72D77 /* Release configuration for PBXProject "Lux Vox" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		038E706D304AC2D500F72D77 /* Build configuration list for PBXNativeTarget "Lux Vox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				038E706E304AC2D500F72D77 /* Debug configuration for PBXNativeTarget "Lux Vox" */,
+				038E706F304AC2D500F72D77 /* Release configuration for PBXNativeTarget "Lux Vox" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		038E7070304AC2D500F72D77 /* Build configuration list for PBXNativeTarget "Lux VoxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				038E7071304AC2D500F72D77 /* Debug configuration for PBXNativeTarget "Lux VoxTests" */,
+				038E7072304AC2D500F72D77 /* Release configuration for PBXNativeTarget "Lux VoxTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		038E7073304AC2D500F72D77 /* Build configuration list for PBXNativeTarget "Lux VoxUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				038E7074304AC2D500F72D77 /* Debug configuration for PBXNativeTarget "Lux VoxUITests" */,
+				038E7075304AC2D500F72D77 /* Release configuration for PBXNativeTarget "Lux VoxUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 038E7046304AC2D300F72D77 /* Project object */;
+	validationLevel = 1;
+}
