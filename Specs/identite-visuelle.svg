@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="920" viewBox="0 0 1120 920" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', Helvetica, sans-serif">
+  <defs>
+    <linearGradient id="sqDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#14322A"/><stop offset="100%" stop-color="#0A1A16"/></linearGradient>
+    <linearGradient id="sqLight" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#F2EFE6"/></linearGradient>
+
+    <!-- LE MICRO — boite de 16 unites, formes pleines a bouts arrondis -->
+    <g id="capsuleHollow"><rect x="6.2" y="1.6" width="3.6" height="7.6" rx="1.8" fill="none" stroke-width="1.25"/></g>
+    <g id="capsuleSolid"><rect x="6.2" y="1.6" width="3.6" height="7.6" rx="1.8"/></g>
+    <g id="arc"><path d="M 12.3 7.2 A 4.3 4.3 0 0 1 3.7 7.2" fill="none" stroke-width="1.35" stroke-linecap="round"/></g>
+    <g id="arcPartial"><path d="M 3.7 7.2 A 4.3 4.3 0 0 0 8 11.5" fill="none" stroke-width="1.35" stroke-linecap="round"/></g>
+    <g id="ring"><circle cx="8" cy="7.2" r="4.3" fill="none" stroke-width="1.35"/></g>
+    <g id="stem"><rect x="7.35" y="11.5" width="1.3" height="2.5" rx="0.65"/></g>
+  </defs>
+
+  <rect width="1120" height="920" fill="#0A1512"/>
+
+  <text x="60" y="58" fill="#F2FAFB" font-size="26" font-weight="500" font-family="'New York','Playfair Display',Georgia,serif">Lux Vox — identité visuelle</text>
+  <text x="60" y="84" fill="#7E938F" font-size="13">Un micro construit dans le langage de la famille : formes pleines, bouts arrondis, répétition. L'état se lit à la forme, jamais à la couleur.</text>
+
+  <!-- ===== ETATS ===== -->
+  <text x="60" y="140" fill="#8FB9C4" font-size="11" font-weight="600" letter-spacing="1.4">LES QUATRE ÉTATS · GLYPHE DE BARRE DES MENUS</text>
+  <g transform="translate(60,166)">
+    <g transform="translate(0,0)">
+      <rect width="220" height="190" rx="10" fill="#0F221E" stroke="#1E332C"/>
+      <g transform="translate(62,30) scale(6)" stroke="#B9C9C6" fill="#B9C9C6"><use href="#capsuleHollow"/><use href="#arc"/><use href="#stem"/></g>
+      <text x="110" y="154" fill="#F2FAFB" font-size="13" text-anchor="middle" font-weight="500">Repos</text>
+      <text x="110" y="173" fill="#6F847F" font-size="11" text-anchor="middle">capsule creuse · arceau simple</text>
+    </g>
+    <g transform="translate(240,0)">
+      <rect width="220" height="190" rx="10" fill="#0F221E" stroke="#1E332C"/>
+      <g transform="translate(62,30) scale(6)" stroke="#E6F1F3" fill="#E6F1F3"><use href="#capsuleSolid"/><use href="#arc"/><use href="#stem"/></g>
+      <text x="110" y="154" fill="#F2FAFB" font-size="13" text-anchor="middle" font-weight="500">Écoute</text>
+      <text x="110" y="173" fill="#6F847F" font-size="11" text-anchor="middle">la capsule se remplit</text>
+    </g>
+    <g transform="translate(480,0)">
+      <rect width="220" height="190" rx="10" fill="#0F221E" stroke="#1E332C"/>
+      <g transform="translate(62,30) scale(6)" stroke="#E6F1F3" fill="#E6F1F3"><use href="#capsuleSolid"/><use href="#ring"/><use href="#stem"/></g>
+      <text x="110" y="154" fill="#F2FAFB" font-size="13" text-anchor="middle" font-weight="500">Écoute verrouillée</text>
+      <text x="110" y="173" fill="#6F847F" font-size="11" text-anchor="middle">l'arceau se referme en anneau</text>
+    </g>
+    <g transform="translate(720,0)">
+      <rect width="220" height="190" rx="10" fill="#0F221E" stroke="#1E332C"/>
+      <g transform="translate(62,30) scale(6)" stroke="#8FB9C4" fill="#8FB9C4"><use href="#capsuleHollow"/><use href="#arcPartial"/><use href="#stem"/></g>
+      <text x="110" y="154" fill="#F2FAFB" font-size="13" text-anchor="middle" font-weight="500">Traitement</text>
+      <text x="110" y="173" fill="#6F847F" font-size="11" text-anchor="middle">l'arceau balaie · 0,9 s</text>
+    </g>
+  </g>
+
+  <!-- ===== TAILLE REELLE ===== -->
+  <text x="60" y="420" fill="#8FB9C4" font-size="11" font-weight="600" letter-spacing="1.4">À LA TAILLE RÉELLE · 16 PT, MONOCHROME, IMAGE TEMPLATE</text>
+  <g transform="translate(60,438)">
+    <rect width="470" height="30" rx="6" fill="#EDEAE1"/>
+    <g fill="#22282A" stroke="#22282A">
+      <g transform="translate(26,7)"><use href="#capsuleHollow"/><use href="#arc"/><use href="#stem"/></g>
+      <g transform="translate(76,7)"><use href="#capsuleSolid"/><use href="#arc"/><use href="#stem"/></g>
+      <g transform="translate(126,7)"><use href="#capsuleSolid"/><use href="#ring"/><use href="#stem"/></g>
+      <g transform="translate(176,7)"><use href="#capsuleHollow"/><use href="#arcPartial"/><use href="#stem"/></g>
+    </g>
+    <text x="246" y="20" fill="#8A8F86" font-size="11">— barre claire, repeint en noir</text>
+  </g>
+  <g transform="translate(570,438)">
+    <rect width="470" height="30" rx="6" fill="#202624"/>
+    <g fill="#F0EEE6" stroke="#F0EEE6">
+      <g transform="translate(26,7)"><use href="#capsuleHollow"/><use href="#arc"/><use href="#stem"/></g>
+      <g transform="translate(76,7)"><use href="#capsuleSolid"/><use href="#arc"/><use href="#stem"/></g>
+      <g transform="translate(126,7)"><use href="#capsuleSolid"/><use href="#ring"/><use href="#stem"/></g>
+      <g transform="translate(176,7)"><use href="#capsuleHollow"/><use href="#arcPartial"/><use href="#stem"/></g>
+    </g>
+    <text x="246" y="20" fill="#75817A" font-size="11">— barre sombre, repeint en blanc</text>
+  </g>
+
+  <!-- ===== ICONE ===== -->
+  <text x="60" y="524" fill="#8FB9C4" font-size="11" font-weight="600" letter-spacing="1.4">L'ICÔNE D'APPLICATION · UN ACCENT + LES TONS DE LA FAMILLE</text>
+  <g transform="translate(60,542)">
+    <rect width="180" height="180" rx="40" fill="url(#sqDark)"/>
+    <g transform="translate(30,30) scale(7.5)">
+      <g fill="#8FB9C4"><use href="#capsuleSolid"/></g>
+      <g stroke="#D5ECCD" fill="none"><use href="#arc"/></g>
+      <g fill="#94AD91"><use href="#stem"/></g>
+    </g>
+  </g>
+  <text x="150" y="748" fill="#9FB0AC" font-size="12" text-anchor="middle">Sombre</text>
+  <g transform="translate(270,542)">
+    <rect width="180" height="180" rx="40" fill="url(#sqLight)"/>
+    <g transform="translate(30,30) scale(7.5)">
+      <g fill="#4A7C8C"><use href="#capsuleSolid"/></g>
+      <g stroke="#8FAF93" fill="none"><use href="#arc"/></g>
+      <g fill="#A8BFA5"><use href="#stem"/></g>
+    </g>
+  </g>
+  <text x="360" y="748" fill="#9FB0AC" font-size="12" text-anchor="middle">Clair</text>
+
+  <text x="490" y="576" fill="#F2FAFB" font-size="13" font-weight="500">La même grammaire que Lux Md</text>
+  <text x="490" y="598" fill="#8A9C98" font-size="12">Md : quatre barres pleines, l'or sur celle du haut, le reste en sauge.</text>
+  <text x="490" y="616" fill="#8A9C98" font-size="12">Vox : la capsule porte l'accent, l'arceau et le pied prennent les verts.</text>
+  <text x="490" y="652" fill="#F2FAFB" font-size="13" font-weight="500">Toujours l'état de repos</text>
+  <text x="490" y="674" fill="#8A9C98" font-size="12">Une icône figée en train d'écouter serait un contresens permanent</text>
+  <text x="490" y="692" fill="#8A9C98" font-size="12">sur une app de micro — et un mensonge dans le Finder.</text>
+  <text x="490" y="728" fill="#F2FAFB" font-size="13" font-weight="500">Aucun emprunt au logo de la maison</text>
+  <text x="490" y="750" fill="#8A9C98" font-size="12">L'anneau et le faisceau de Lux Audere restent à Lux Audere.</text>
+
+  <!-- ===== PALETTE ===== -->
+  <text x="60" y="812" fill="#8FB9C4" font-size="11" font-weight="600" letter-spacing="1.4">L'ACCENT PROPRE À LUX VOX, PARMI SES SŒURS</text>
+  <g transform="translate(60,828)">
+    <g><rect width="150" height="46" rx="8" fill="#4A7C8C"/><text x="12" y="20" fill="#F2FAFB" font-size="11" font-weight="600">Ardoise</text><text x="12" y="36" fill="#CFE2E7" font-size="11">#4A7C8C · clair</text></g>
+    <g transform="translate(166,0)"><rect width="150" height="46" rx="8" fill="#8FB9C4"/><text x="12" y="20" fill="#0A1512" font-size="11" font-weight="600">Halo</text><text x="12" y="36" fill="#14322A" font-size="11">#8FB9C4 · sombre</text></g>
+    <g transform="translate(332,0)"><rect width="150" height="46" rx="8" fill="#0F221E" stroke="#1E332C"/><text x="12" y="20" fill="#F2FAFB" font-size="11" font-weight="600">Squircle</text><text x="12" y="36" fill="#7E938F" font-size="11">#0F221E · famille</text></g>
+    <g transform="translate(498,0)"><rect width="150" height="46" rx="8" fill="#8FAF93"/><text x="12" y="20" fill="#143025" font-size="11" font-weight="600">Sauge</text><text x="12" y="36" fill="#22432F" font-size="11">Lux Calendar</text></g>
+    <g transform="translate(664,0)"><rect width="150" height="46" rx="8" fill="#E9C57E"/><text x="12" y="20" fill="#3A2C10" font-size="11" font-weight="600">Or</text><text x="12" y="36" fill="#5A4518" font-size="11">Lux Md</text></g>
+  </g>
+</svg>

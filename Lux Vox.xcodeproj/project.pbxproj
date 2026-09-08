@@ -6,6 +6,10 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BB1A0000000000000000AA03 /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = BB1A0000000000000000AA02 /* WhisperKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		038E705C304AC2D500F72D77 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -51,6 +55,7 @@
 		038E704B304AC2D300F72D77 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				BB1A0000000000000000AA03 /* WhisperKit in Frameworks */,
 			);
 		};
 		038E7058304AC2D500F72D77 /* Frameworks */ = {
@@ -103,6 +108,9 @@
 				038E7050304AC2D300F72D77 /* Lux Vox */,
 			);
 			name = "Lux Vox";
+			packageProductDependencies = (
+				BB1A0000000000000000AA02 /* WhisperKit */,
+			);
 			productName = "Lux Vox";
 			productReference = 038E704E304AC2D300F72D77 /* Lux Vox.app */;
 			productType = "com.apple.product-type.application";
@@ -181,6 +189,9 @@
 			);
 			mainGroup = 038E7045304AC2D300F72D77;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BB1A0000000000000000AA01 /* XCRemoteSwiftPackageReference "WhisperKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 038E704F304AC2D300F72D77 /* Products */;
 			projectDirPath = "";
@@ -368,6 +379,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Lux Vox.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -379,7 +391,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Lux Vox transcrit votre voix en texte, en local sur cette machine. Aucun enregistrement n'est conserv\U00e9 ni envoy\U00e9.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Lux Vox transcrit votre voix en texte, en local sur cette machine. Aucun enregistrement n'est conservé ni envoyé.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -402,6 +414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Lux Vox.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -413,7 +426,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Lux Vox transcrit votre voix en texte, en local sur cette machine. Aucun enregistrement n'est conserv\U00e9 ni envoy\U00e9.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Lux Vox transcrit votre voix en texte, en local sur cette machine. Aucun enregistrement n'est conservé ni envoyé.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -547,6 +560,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BB1A0000000000000000AA01 /* XCRemoteSwiftPackageReference "WhisperKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/argmaxinc/WhisperKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BB1A0000000000000000AA02 /* WhisperKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BB1A0000000000000000AA01 /* XCRemoteSwiftPackageReference "WhisperKit" */;
+			productName = WhisperKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 038E7046304AC2D300F72D77 /* Project object */;
 	validationLevel = 1;

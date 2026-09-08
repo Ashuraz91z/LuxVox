@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- App Sandbox désactivé (cahier des charges §6) : sans quoi le contrôle
+	     du clavier est impossible. Le Hardened Runtime, lui, reste actif, et
+	     c'est lui qui exige la déclaration ci-dessous.
+
+	     Sans cette clé, macOS refuse l'accès au micro en amont : aucune
+	     demande n'est présentée à l'utilisateur, et l'app n'apparaît même pas
+	     dans Réglages Système → Confidentialité → Microphone. -->
+	<key>com.apple.security.device.audio-input</key>
+	<true/>
+</dict>
+</plist>

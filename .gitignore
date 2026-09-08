@@ -5,9 +5,53 @@ build/
 DerivedData/
 *.xcuserstate
 xcuserdata/
+*.xcscmblueprint
+*.moved-aside
+timeline.xctimeline
+playground.xcworkspace
+
+# Dépendances
+.build/
+.swiftpm/
+Packages/
+Pods/
+
+# Signature et notarisation — ne doivent jamais entrer dans le dépôt
+# (le certificat stable de la décision d, cahier des charges §6)
+*.p12
+*.pfx
+*.cer
+*.certSigningRequest
+*.mobileprovision
+*.provisionprofile
+*.keychain
+*.keychain-db
+*.pem
+*.key
+ExportOptions.plist
+AuthKey_*.p8
+notarization*.json
+
+# Le modèle de transcription : téléchargé au premier lancement dans
+# ~/Library/Application Support/Lux Vox, jamais versionné.
+Models/
+
+# Secrets
+.env
+.env.*
+Secrets.swift
+Secrets.plist
+*.secrets
+
+# Captures audio et transcriptions de test — contenu potentiellement personnel
+Enregistrements/
+*.caf
+*.wav
+*.m4a
 
 # Local, hors dépôt
 A/
 
-# Binaires de distribution
+# Binaires de distribution (voir les Releases GitHub)
 Apps/
+*.dmg
