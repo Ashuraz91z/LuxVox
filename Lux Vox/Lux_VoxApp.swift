@@ -17,7 +17,7 @@ struct Lux_VoxApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var delegue
 
     var body: some Scene {
-        MenuBarExtra("Lux Vox", systemImage: "mic") {
+        MenuBarExtra("Lux Vox", systemImage: "waveform") {
             MenuBarView(controleur: delegue.controleur)
         }
         .menuBarExtraStyle(.window)
@@ -36,3 +36,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         controleur.demarre()
     }
 }
+
+
+

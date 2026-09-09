@@ -234,9 +234,14 @@ final class DictationController {
 
         do {
             let session = try await moteur.ouvreSession()
-            try capture.demarre { tampon in
-                Task { await session.pousse(tampon) }
-            }
+            try capture.demarre(
+                recevoir: { tampon in
+                    Task { await session.pousse(tampon) }
+                },
+                niveaux: { [weak self] mesures in
+                    Task { @MainActor in self?.overlay.mesure(mesures) }
+                }
+            )
             journal.info("session ouverte")
             return session
         } catch {
@@ -332,16 +337,6 @@ final class DictationController {
     /// première cause d'échec prévisible, et elle n'a rien à voir avec le code.
     func ouvreReglagesClavier() {
         ouvre("x-apple.systempreferences:com.apple.preference.keyboard")
-    }
-
-    /// Fait défiler les quatre états pour les juger à l'œil (DA §11).
-    func apercu() {
-        let sequence: [DictationState] = [.ecoute, .ecouteVerrouillee, .traitement, .repos]
-        for (rang, etape) in sequence.enumerated() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(rang) * 1.2) { [weak self] in
-                self?.montre(etape)
-            }
-        }
     }
 
     // MARK: - Interne

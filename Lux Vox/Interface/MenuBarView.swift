@@ -66,7 +66,7 @@ struct MenuBarView: View {
 
     private var entete: some View {
         HStack(spacing: 10) {
-            VoxGlyph(etat: controleur.etat, taille: 22)
+            MarqueVox(taille: 22)
 
             VStack(alignment: .leading, spacing: 1) {
                 Text("Lux Vox")
@@ -216,7 +216,6 @@ struct MenuBarView: View {
 
     private var piedDePage: some View {
         HStack {
-            Button("Aperçu des états") { controleur.apercu() }
             Spacer()
             Button("Quitter") { NSApplication.shared.terminate(nil) }
                 .keyboardShortcut("q")

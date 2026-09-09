@@ -6,15 +6,17 @@
 import AppKit
 import SwiftUI
 
-/// L'état affiché par l'overlay, observé par la vue pour que les transitions
-/// de la DA (§8) s'animent au lieu de sauter.
+/// L'état affiché par l'overlay, observé par la vue.
 @MainActor
 @Observable
 final class OverlayModel {
     var etat: DictationState = .repos
+    /// Le niveau du micro, lissé. La vue en tire une valeur à chaque image.
+    var niveau = NiveauLisse()
 }
 
-/// Le petit visuel flottant, en bas de l'écran.
+/// Ce qui se voit pendant une dictée : une capsule en bas de l'écran, et rien
+/// d'autre.
 ///
 /// Contrainte non négociable : ce panneau **ne prend jamais le focus**. Une
 /// dictée qui déplacerait le focus clavier écrirait ensuite dans la mauvaise
@@ -27,13 +29,28 @@ final class OverlayController {
     private let modele = OverlayModel()
     private var panneau: NSPanel?
 
-    /// Assez petit pour rester en périphérie : tout ce qui attire l'attention
-    /// plus que nécessaire est un défaut.
-    private static let cote: CGFloat = 44
-    private static let margeBasse: CGFloat = 28
+    /// Rien ne déborde de la capsule — ni ombre, ni flou. La marge n'est là
+    /// que pour laisser respirer l'animation d'entrée.
+    static let debord: CGFloat = 6
+
+    private static let margeBasse: CGFloat = 34
+
+    private static var largeur: CGFloat { Vumetre.largeur + debord * 2 }
+    private static var hauteur: CGFloat { Vumetre.hauteur + debord * 2 }
+
+    /// Alimente les barres sans rouvrir le panneau : appelé au rythme du micro.
+    ///
+    /// Le pic de la salve, pas sa moyenne : moyenner 170 ms de parole rabote
+    /// l'attaque des syllabes, et c'est justement l'attaque qui fait qu'on
+    /// reconnaît sa propre voix dans les barres.
+    func mesure(_ nouvelles: [Float]) {
+        guard let pic = nouvelles.max() else { return }
+        modele.niveau.vise(Double(pic))
+    }
 
     func affiche(_ etat: DictationState) {
         modele.etat = etat
+        if etat == .repos { modele.niveau = NiveauLisse() }
 
         guard etat.estVisible else {
             panneau?.orderOut(nil)
@@ -56,7 +73,7 @@ final class OverlayController {
         if let panneau { return panneau }
 
         let nouveau = NSPanel(
-            contentRect: NSRect(x: 0, y: 0, width: Self.cote, height: Self.cote),
+            contentRect: NSRect(x: 0, y: 0, width: Self.largeur, height: Self.hauteur),
             styleMask: [.borderless, .nonactivatingPanel],
             backing: .buffered,
             defer: false
@@ -83,35 +100,39 @@ final class OverlayController {
         let zone = ecran.visibleFrame
         panneau.setFrameOrigin(
             NSPoint(
-                x: zone.midX - Self.cote / 2,
-                y: zone.minY + Self.margeBasse
+                x: zone.midX - Self.largeur / 2,
+                y: zone.minY + Self.margeBasse - Self.debord
             )
         )
     }
 }
 
-/// La pastille qui porte le glyphe.
+/// **Révision de la DA §7** : plus de verre, plus de dégradé, plus d'ombre.
 ///
-/// Pas d'ombre — le design system Mac les proscrit. La lisibilité au-dessus
-/// d'un contenu quelconque vient d'un fond opaque et d'un filet `separator`,
-/// pas d'une élévation.
+/// Trois couleurs en tout — le noir de la capsule, le crème du trait et des
+/// barres, et ce qu'il y a derrière. Tout ce qui a été retiré (le flou du
+/// fond, le halo, le liseré dégradé) servait à faire tenir un objet qui se
+/// tenait mieux sans.
 private struct OverlayView: View {
     @Bindable var modele: OverlayModel
-    @Environment(\.colorScheme) private var theme
+
+    private var visible: Bool { modele.etat.estVisible }
 
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: LuxColor.rayon, style: .continuous)
-                .fill(LuxColor.surfaceElevated(theme))
-                .overlay(
-                    RoundedRectangle(cornerRadius: LuxColor.rayon, style: .continuous)
-                        .stroke(LuxColor.separator(theme), lineWidth: 1)
-                )
-
-            VoxGlyph(etat: modele.etat, taille: 24)
-        }
-        .padding(2)
-        .opacity(modele.etat.estVisible ? 1 : 0)
-        .animation(.easeInOut(duration: 0.15), value: modele.etat.estVisible)
+        Vumetre(signal: modele.etat.signal, niveau: modele.niveau)
+            .padding(OverlayController.debord)
+            // La capsule s'ouvre depuis le centre au lieu d'apparaître : le
+            // geste dure moins qu'un clignement et évite le surgissement.
+            .scaleEffect(visible ? 1 : 0.86, anchor: .center)
+            .opacity(visible ? 1 : 0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.86), value: visible)
     }
+}
+
+#Preview("Overlay") {
+    let modele = OverlayModel()
+    OverlayView(modele: modele)
+        .padding(30)
+        .background(Color(white: 0.14))
+        .task { modele.etat = .ecoute }
 }

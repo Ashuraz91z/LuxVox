@@ -99,7 +99,7 @@ struct InstallationView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             HStack(spacing: 12) {
-                VoxGlyph(etat: .traitement, taille: 28)
+                MarqueVox(taille: 28)
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(modele.etape.titre)

@@ -176,24 +176,27 @@ struct TriggerGestureTests {
         #expect(machine.etat.estVisible == false)
     }
 
-    @Test("Les deux écoutes partagent le même glyphe")
-    func memeGlyphePourLesDeuxEcoutes() {
-        #expect(DictationState.ecoute.arceau == DictationState.ecouteVerrouillee.arceau)
-        #expect(DictationState.ecoute.capsulePleine == DictationState.ecouteVerrouillee.capsulePleine)
+    @Test("Les deux écoutes partagent le même HUD")
+    func memeHUDPourLesDeuxEcoutes() {
+        #expect(DictationState.ecoute.signal == DictationState.ecouteVerrouillee.signal)
     }
 
     @Test("Le traitement reste distinct des écoutes")
     func traitementDistinct() {
-        #expect(DictationState.traitement.arceau != DictationState.ecoute.arceau)
-        #expect(DictationState.traitement.capsulePleine == false)
+        // La bande suit le micro pendant l'écoute et ne le suit plus pendant
+        // la transcription : sans ça, elle resterait figée sur la dernière
+        // mesure et laisserait croire que l'app est bloquée.
+        #expect(DictationState.traitement.signal != DictationState.ecoute.signal)
+        #expect(DictationState.traitement.signal == .travaille)
+        #expect(DictationState.repos.signal == .eteint)
         #expect(DictationState.repos.estVisible == false)
     }
 
     /// Ce qui sépare désormais les deux gestes à l'écran n'est plus la forme
-    /// mais la durée : le glyphe du maintien s'efface au relâchement, celui du
+    /// mais la durée : le HUD du maintien s'efface au relâchement, celui du
     /// double-appui tient jusqu'à ce qu'on referme.
-    @Test("Le maintien efface le glyphe au relâchement")
-    func glypheDuMaintienSEfface() {
+    @Test("Le maintien efface le HUD au relâchement")
+    func hudDuMaintienSEfface() {
         var machine = TriggerMachine()
         _ = machine.traite(.appui(0))
         _ = machine.traite(.minuterie(Self.seuil))

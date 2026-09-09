@@ -41,7 +41,10 @@ final class AudioCapture {
     /// un `AVAudioConverter` alimenté tampon par tampon perd des échantillons
     /// aux jointures. C'est au moteur de convertir, avec l'outil que son
     /// framework fournit pour ça.
-    func demarre(recevoir: @escaping @Sendable (TamponAudio) -> Void) throws {
+    func demarre(
+        recevoir: @escaping @Sendable (TamponAudio) -> Void,
+        niveaux: @escaping @Sendable ([Float]) -> Void = { _ in }
+    ) throws {
         guard !actif else { return }
 
         let entree = moteur.inputNode
@@ -56,6 +59,7 @@ final class AudioCapture {
         journal.info("micro: \(format.sampleRate, privacy: .public) Hz, \(format.channelCount, privacy: .public) canal/aux")
 
         try Self.poseLeTap(sur: entree, format: format) { tampon in
+            niveaux(Self.mesure(tampon))
             recevoir(TamponAudio(buffer: tampon))
         }
 
@@ -100,6 +104,55 @@ final class AudioCapture {
         try entree.__installTap(onBus: 0, bufferSize: 8192, format: format, error: ()) { tampon, _ in
             recevoir(tampon)
         }
+    }
+}
+
+extension AudioCapture {
+
+    /// Nombre de mesures tirées d'un même tampon.
+    ///
+    /// Un tampon couvre environ 170 ms : une seule valeur par tampon donnerait
+    /// six points par seconde, trop peu pour une animation qui suit la voix.
+    /// On le découpe donc en tranches.
+    private nonisolated static let tranchesParTampon = 8
+
+    /// Plage utile en décibels. En dessous, c'est du silence ; au-dessus, la
+    /// voix sature l'affichage.
+    private nonisolated static let planchederDecibels: Float = -55
+    private nonisolated static let plafondDecibels: Float = -12
+
+    /// Mesure l'énergie du tampon, tranche par tranche, sur une échelle
+    /// décibel : c'est ainsi que l'oreille perçoit le volume, et une échelle
+    /// linéaire écraserait tout le bas du registre.
+    nonisolated static func mesure(_ tampon: AVAudioPCMBuffer) -> [Float] {
+        guard let canal = tampon.floatChannelData?[0] else { return [] }
+        let total = Int(tampon.frameLength)
+        guard total > 0 else { return [] }
+
+        let taille = max(1, total / tranchesParTampon)
+        var sorties: [Float] = []
+        sorties.reserveCapacity(tranchesParTampon)
+
+        var debut = 0
+        while debut < total {
+            let fin = min(debut + taille, total)
+            var somme: Float = 0
+            for index in debut..<fin {
+                let echantillon = canal[index]
+                somme += echantillon * echantillon
+            }
+            let moyenne = (somme / Float(fin - debut)).squareRoot()
+            sorties.append(normalise(moyenne))
+            debut = fin
+        }
+        return sorties
+    }
+
+    private nonisolated static func normalise(_ amplitude: Float) -> Float {
+        guard amplitude > 0 else { return 0 }
+        let decibels = 20 * log10(amplitude)
+        let part = (decibels - planchederDecibels) / (plafondDecibels - planchederDecibels)
+        return min(max(part, 0), 1)
     }
 }
 

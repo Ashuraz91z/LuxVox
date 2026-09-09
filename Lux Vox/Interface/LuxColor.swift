@@ -45,6 +45,26 @@ nonisolated enum LuxColor {
     /// Rayon unique de la DA (§7). La capsule sur Mac est la signature d'un
     /// portage iOS.
     static let rayon: CGFloat = 6
+
+    // MARK: - Le HUD (révision de la DA, 2026-09-09)
+
+    /// **Écart assumé avec la DA §5** : l'overlay est monochrome, et sombre
+    /// dans les deux thèmes.
+    ///
+    /// Il flotte au-dessus de n'importe quoi — un fond de code, une photo, un
+    /// document blanc. Une capsule noire cernée d'un trait clair se détache de
+    /// toutes ces scènes sans halo, sans ombre et sans flou. L'accent ardoise
+    /// du produit n'a rien à faire ici : ajouter une teinte à un objet dont le
+    /// seul travail est de se voir, c'est une décision de plus à défendre pour
+    /// rien.
+    static let hudFond = Color(hex: 0x0A0A0B)
+
+    /// Blanc franc, et pas le crème de la famille. Le crème est fait pour le
+    /// texte sur les surfaces de l'app ; posé sur un fond clair il devient
+    /// invisible, et c'est justement là que le liseré doit travailler. Une
+    /// capsule noire suffit à se voir sur du clair, mais pas à avoir un bord.
+    static let hudTrait = Color(hex: 0xFFFFFF)
+
 }
 
 extension Color {
