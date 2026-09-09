@@ -42,6 +42,12 @@ nonisolated enum TextCleaner {
     private enum Token: Equatable {
         case mot(String)
         case ponctuation(String)
+        /// Signe qui ouvre une paire : `«`, `(`. Il colle au mot qui suit.
+        case ouvrant(String)
+        /// Signe qui ferme une paire : `»`, `)`. Il colle au mot qui précède.
+        case fermant(String)
+        /// Début d'un élément de liste. Le numéro est absent pour une puce.
+        case puce(String?)
         case saut
     }
 
@@ -94,7 +100,40 @@ nonisolated enum TextCleaner {
         (["nouvelle", "ligne"], .saut),
         (["virgule"], .ponctuation(",")),
         (["point"], .ponctuation(".")),
+
+        // Paires. « guillemets » seul est ambigu : c'est l'alternance qui
+        // décide s'il ouvre ou s'il ferme (voir `appliquePonctuationDictee`).
+        (["ouvrez", "les", "guillemets"], .ouvrant("«")),
+        (["ouvre", "les", "guillemets"], .ouvrant("«")),
+        (["entre", "guillemets"], .ouvrant("«")),
+        (["fermez", "les", "guillemets"], .fermant("»")),
+        (["ferme", "les", "guillemets"], .fermant("»")),
+        (["fin", "de", "citation"], .fermant("»")),
+        (["guillemets"], .ouvrant("«")),
+        (["guillemet"], .ouvrant("«")),
+        (["ouvrez", "la", "parenthese"], .ouvrant("(")),
+        (["ouvre", "la", "parenthese"], .ouvrant("(")),
+        (["entre", "parentheses"], .ouvrant("(")),
+        (["fermez", "la", "parenthese"], .fermant(")")),
+        (["ferme", "la", "parenthese"], .fermant(")")),
     ]
+
+    /// Marqueurs de liste dictés.
+    ///
+    /// **Écart assumé au principe « on retire, on ne réécrit pas »** : un
+    /// ordinal dicté disparaît au profit de sa numérotation. C'est une demande
+    /// explicite, et le sens est préservé — « deuxièmement » et « 2. » disent
+    /// la même chose. Ces marqueurs ne comptent qu'en tête d'énoncé ou de
+    /// ligne : « il est arrivé premier » n'est pas une liste.
+    private static let ordinaux: [String: String] = [
+        "premierement": "1", "deuxiemement": "2", "troisiemement": "3",
+        "quatriemement": "4", "cinquiemement": "5", "sixiemement": "6",
+        "septiemement": "7", "huitiemement": "8", "neuviemement": "9",
+        "dixiemement": "10",
+    ]
+
+    /// Une puce sans numéro.
+    private static let marqueursPuce: Set<String> = ["tiret", "puce"]
 
     /// Devant un déterminant, « point » est un nom commun (« un point
     /// important »), pas une ponctuation dictée.
@@ -107,19 +146,49 @@ nonisolated enum TextCleaner {
     private static func appliquePonctuationDictee(_ tokens: [Token]) -> [Token] {
         var sortie: [Token] = []
         var index = 0
+        var citationOuverte = false
 
         boucle: while index < tokens.count {
-            guard case .mot = tokens[index] else {
+            guard case .mot(let mot) = tokens[index] else {
                 sortie.append(tokens[index])
                 index += 1
                 continue
+            }
+
+            // Marqueurs de liste : seulement en tête d'énoncé ou de ligne.
+            if enTeteDeLigne(sortie) {
+                let forme = normalise(mot)
+                if marqueursPuce.contains(forme) {
+                    sortie.append(.puce(nil))
+                    index += 1
+                    continue
+                }
+                if let numero = ordinaux[forme] {
+                    sortie.append(.puce(numero))
+                    index += 1
+                    continue
+                }
             }
 
             for regle in ponctuationDictee where correspond(regle.sequence, dans: tokens, a: index) {
                 if regle.sequence == ["point"], estNomCommun(avant: sortie) {
                     break
                 }
-                sortie.append(regle.token)
+
+                // « guillemets » dit seul ouvre la première fois, ferme la
+                // suivante : c'est ainsi qu'on dicte, sans préciser à chaque
+                // fois de quel côté on se trouve.
+                var token = regle.token
+                if case .ouvrant("«") = token, citationOuverte {
+                    token = .fermant("»")
+                }
+                switch token {
+                case .ouvrant("«"): citationOuverte = true
+                case .fermant("»"): citationOuverte = false
+                default: break
+                }
+
+                sortie.append(token)
                 index += regle.sequence.count
                 continue boucle
             }
@@ -127,7 +196,24 @@ nonisolated enum TextCleaner {
             sortie.append(tokens[index])
             index += 1
         }
+
+        // Une citation restée ouverte est refermée : un guillemet orphelin est
+        // plus gênant qu'un guillemet ajouté.
+        if citationOuverte { sortie.append(.fermant("»")) }
         return sortie
+    }
+
+    /// Rien, un saut de ligne ou une ponctuation forte précède : on est au
+    /// début d'un énoncé.
+    private static func enTeteDeLigne(_ sortie: [Token]) -> Bool {
+        switch sortie.last {
+        case nil, .saut, .puce:
+            true
+        case .ponctuation(let signe):
+            signe == "." || signe == "?" || signe == "!"
+        default:
+            false
+        }
     }
 
     private static func correspond(_ sequence: [String], dans tokens: [Token], a index: Int) -> Bool {
@@ -265,8 +351,8 @@ nonisolated enum TextCleaner {
         let suivant = index + 1
         guard suivant < tokens.count else { return true }
         switch tokens[suivant] {
-        case .mot: return false
-        case .ponctuation, .saut: return true
+        case .mot, .ouvrant: return false
+        case .ponctuation, .fermant, .puce, .saut: return true
         }
     }
 
@@ -274,8 +360,8 @@ nonisolated enum TextCleaner {
     private static func estSeulMotDuSegment(_ tokens: [Token], _ index: Int) -> Bool {
         guard index > 0 else { return true }
         switch tokens[index - 1] {
-        case .mot: return false
-        case .ponctuation, .saut: return true
+        case .mot, .fermant: return false
+        case .ponctuation, .ouvrant, .puce, .saut: return true
         }
     }
 
@@ -295,12 +381,27 @@ nonisolated enum TextCleaner {
     private static func assemble(_ tokens: [Token]) -> String {
         var sortie = ""
         var debutDePhrase = true
+        /// Un signe ouvrant colle au mot qui suit : pas d'espace entre les deux.
+        var colleAuSuivant = false
+
+        func separe() {
+            guard !sortie.isEmpty, !sortie.hasSuffix("\n"), !colleAuSuivant else { return }
+            sortie += " "
+        }
 
         for token in tokens {
             switch token {
             case .saut:
                 sortie += "\n"
                 debutDePhrase = true
+                colleAuSuivant = false
+
+            case .puce(let numero):
+                // Chaque élément commence sa ligne, sans en ouvrir une vide.
+                if !sortie.isEmpty && !sortie.hasSuffix("\n") { sortie += "\n" }
+                sortie += numero.map { "\($0). " } ?? "- "
+                debutDePhrase = true
+                colleAuSuivant = true
 
             case .ponctuation(let signe):
                 switch signe {
@@ -312,11 +413,24 @@ nonisolated enum TextCleaner {
                     sortie += fineInsecable + signe
                 }
                 debutDePhrase = (signe == "." || signe == "?" || signe == "!")
+                colleAuSuivant = false
+
+            case .ouvrant(let signe):
+                separe()
+                // En français, le guillemet ouvrant est suivi d'une insécable ;
+                // la parenthèse, de rien.
+                sortie += signe == "«" ? signe + insecable : signe
+                colleAuSuivant = true
+
+            case .fermant(let signe):
+                sortie += signe == "»" ? insecable + signe : signe
+                colleAuSuivant = false
 
             case .mot(let mot):
-                if !sortie.isEmpty && !sortie.hasSuffix("\n") { sortie += " " }
+                separe()
                 sortie += debutDePhrase ? capitalise(mot) : mot
                 debutDePhrase = false
+                colleAuSuivant = false
             }
         }
         return sortie.trimmingCharacters(in: .whitespacesAndNewlines)

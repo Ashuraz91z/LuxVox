@@ -197,4 +197,59 @@ struct TextCleanerTests {
             #expect(sortie.contains(mot))
         }
     }
+
+    // MARK: - Guillemets et parenthèses
+
+    @Test("Les guillemets dictés encadrent le texte")
+    func guillemets() {
+        #expect(TextCleaner.clean("il a dit ouvrez les guillemets je viens fermez les guillemets")
+                == "Il a dit «\(Self.insecable)je viens\(Self.insecable)»")
+    }
+
+    /// « guillemets » dit seul est ambigu : c'est l'alternance qui tranche.
+    @Test("Guillemets seuls : le premier ouvre, le second ferme")
+    func guillemetsAlternance() {
+        #expect(TextCleaner.clean("il a dit guillemets je viens guillemets")
+                == "Il a dit «\(Self.insecable)je viens\(Self.insecable)»")
+    }
+
+    /// Un guillemet orphelin est plus gênant qu'un guillemet ajouté.
+    @Test("Une citation restée ouverte est refermée")
+    func citationRefermee() {
+        #expect(TextCleaner.clean("il a dit guillemets je viens")
+                == "Il a dit «\(Self.insecable)je viens\(Self.insecable)»")
+    }
+
+    @Test("Les parenthèses collent au texte, sans espace intérieur")
+    func parentheses() {
+        #expect(TextCleaner.clean("le client ouvrez la parenthèse le grand fermez la parenthèse arrive")
+                == "Le client (le grand) arrive")
+    }
+
+    // MARK: - Listes
+
+    @Test("« tiret » en tête de ligne ouvre une puce")
+    func listeAPuces() {
+        #expect(TextCleaner.clean("tiret du pain à la ligne tiret du lait")
+                == "- Du pain\n- Du lait")
+    }
+
+    @Test("Les ordinaux dictés produisent une liste numérotée")
+    func listeNumerotee() {
+        #expect(TextCleaner.clean("premièrement relire à la ligne deuxièmement corriger")
+                == "1. Relire\n2. Corriger")
+    }
+
+    /// Sans marqueur en tête de ligne, rien n'est transformé : « il est arrivé
+    /// premier » n'est pas une liste, et un tiret au milieu d'une phrase non plus.
+    @Test("Un marqueur hors tête de ligne ne crée pas de liste")
+    func pasDeListeAuMilieu() {
+        #expect(TextCleaner.clean("le trait d'union est un tiret") == "Le trait d'union est un tiret")
+    }
+
+    @Test("Une liste ferme la phrase précédente sans ligne vide")
+    func listeApresPhrase() {
+        #expect(TextCleaner.clean("à faire deux points à la ligne tiret relire")
+                == "À faire\(Self.insecable):\n- Relire")
+    }
 }
