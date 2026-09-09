@@ -31,7 +31,9 @@ fi
 # échoue si l'app tourne.
 build="$racine/.build/release"
 app="$build/Build/Products/Release/Lux Vox.app"
-dmg="$racine/Apps/Lux Vox $version.dmg"
+# Sans espace : GitHub les remplace par des points dans le nom d'un asset,
+# et « Lux.Vox.0.1.0.dmg » se lit mal dans une page de release.
+dmg="$racine/Apps/LuxVox-$version.dmg"
 
 echo "▸ version $version"
 xcodebuild -project "Lux Vox.xcodeproj" -scheme "Lux Vox" -configuration Release \
