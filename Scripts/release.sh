@@ -31,9 +31,13 @@ fi
 # échoue si l'app tourne.
 build="$racine/.build/release"
 app="$build/Build/Products/Release/Lux Vox.app"
-# Sans espace : GitHub les remplace par des points dans le nom d'un asset,
-# et « Lux.Vox.0.1.0.dmg » se lit mal dans une page de release.
-dmg="$racine/Apps/LuxVox-$version.dmg"
+# Ni espace ni tiret. L'espace, GitHub le remplace par un point, et
+# « Lux.Vox.1.0.0.dmg » se lit mal dans une page de release. Le tiret, lui,
+# ne survit pas à tous les chemins par lesquels un fichier peut arriver
+# jusqu'au téléversement — la 0.2.0 et la 1.0.0 sont toutes deux publiées
+# sans lui, alors que le script le mettait. Un nom qui change en route est un
+# lien mort sur le site, et personne ne le voit avant que quelqu'un clique.
+dmg="$racine/Apps/LuxVox$version.dmg"
 
 echo "▸ version $version"
 xcodebuild -project "Lux Vox.xcodeproj" -scheme "Lux Vox" -configuration Release \
