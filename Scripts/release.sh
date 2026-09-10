@@ -47,17 +47,10 @@ codesign --verify --deep --strict "$app"
 codesign -dvvv "$app" 2>&1 | grep '^Authority' | head -1
 
 echo "▸ empaquetage"
-scene="$(mktemp -d)"
-trap 'rm -rf "$scene"' EXIT
-cp -R "$app" "$scene/"
-ln -s /Applications "$scene/Applications"
+# La mise en scène de la fenêtre vit dans son propre script : refaire le fond
+# du DMG ne devrait pas coûter une compilation Release.
+"$racine/Scripts/dmg.sh" "$app" "$dmg"
 
-mkdir -p "$racine/Apps"
-hdiutil create -volname "Lux Vox" -srcfolder "$scene" -ov -format UDZO -quiet "$dmg"
-
-echo
-echo "  $dmg  ($(du -h "$dmg" | cut -f1))"
-echo
 echo "Ensuite :"
 echo "  git tag -a v$version -m \"Lux Vox $version\" && git push origin v$version"
 echo "  puis la release sur https://github.com/Ashuraz91z/LuxVox/releases/new"
