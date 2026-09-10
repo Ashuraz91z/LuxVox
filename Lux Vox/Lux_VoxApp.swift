@@ -18,7 +18,7 @@ struct Lux_VoxApp: App {
 
     var body: some Scene {
         MenuBarExtra("Lux Vox", systemImage: "waveform") {
-            MenuBarView(controleur: delegue.controleur)
+            MenuBarView(controleur: delegue.controleur, amont: delegue.amont)
         }
         .menuBarExtraStyle(.window)
     }
@@ -31,9 +31,14 @@ struct Lux_VoxApp: App {
 /// resterait muette jusque-là.
 final class AppDelegate: NSObject, NSApplicationDelegate {
     let controleur = DictationController()
+    /// La veille des versions. Elle vit ici et non dans le contrôleur : elle
+    /// n'a rien à voir avec la dictée, et un objet qui parle au réseau n'a
+    /// rien à faire dans celui qui écoute le micro.
+    let amont = MiseAJour()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         controleur.demarre()
+        amont.demarre()
     }
 }
 

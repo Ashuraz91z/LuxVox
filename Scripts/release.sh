@@ -54,3 +54,10 @@ echo "▸ empaquetage"
 echo "Ensuite :"
 echo "  git tag -a v$version -m \"Lux Vox $version\" && git push origin v$version"
 echo "  puis la release sur https://github.com/Ashuraz91z/LuxVox/releases/new"
+echo
+# Depuis 0.3, l'app se met à jour toute seule en lisant cette liste de
+# releases. Ce ne sont donc plus des conventions de rangement : ce sont les
+# deux conditions pour qu'une version existe aux yeux des utilisateurs.
+echo "  L'app lit cette liste pour se mettre à jour. Donc :"
+echo "    · l'étiquette doit être un numéro (v$version ou $version), rien d'autre ;"
+echo "    · le .dmg doit être attaché à la release, sinon elle est ignorée."

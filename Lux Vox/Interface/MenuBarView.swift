@@ -12,6 +12,7 @@ import SwiftUI
 /// transcriptions viendra ici.
 struct MenuBarView: View {
     @Bindable var controleur: DictationController
+    let amont: MiseAJour
     @Environment(\.colorScheme) private var theme
 
     var body: some View {
@@ -56,6 +57,9 @@ struct MenuBarView: View {
 
             Divider()
             choixDuDeclencheur
+
+            Divider()
+            miseAJour
 
             Divider()
             piedDePage
@@ -212,6 +216,79 @@ struct MenuBarView: View {
                 .help("macOS s'attribue cette touche par défaut. Réglez « Appuyer sur 🌐 pour » sur « Ne rien faire ».")
             }
         }
+    }
+
+    /// La veille des versions.
+    ///
+    /// Elle n'est bruyante que quand elle a quelque chose à dire. Le reste du
+    /// temps elle tient sur une ligne, et cette ligne est le seul endroit où
+    /// l'utilisateur apprend que l'app va voir chez GitHub de temps en temps.
+    /// La cacher entièrement aurait été plus propre à l'œil et moins honnête.
+    @ViewBuilder
+    private var miseAJour: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            switch amont.etat {
+            case .inconnu, .verification:
+                murmure("Recherche d'une mise à jour…")
+
+            case .aJour:
+                HStack {
+                    murmure("Version \(amont.courante.description) — à jour")
+                    Spacer()
+                    lienDiscret("Vérifier") { amont.verifie() }
+                }
+
+            case .echec(let raison):
+                HStack {
+                    murmure(raison)
+                    Spacer()
+                    lienDiscret("Réessayer") { amont.verifie() }
+                }
+
+            case .disponible(let version):
+                rubrique("MISE À JOUR")
+                Text("Lux Vox \(version.description) est disponible.")
+                    .font(.system(size: 12))
+                    .foregroundStyle(LuxColor.text(theme))
+                Button("Télécharger") { amont.telecharge() }
+                    .font(.system(size: 12))
+
+            case .telechargement(let version):
+                rubrique("MISE À JOUR")
+                HStack(spacing: 8) {
+                    ProgressView().controlSize(.small)
+                    murmure("Téléchargement de \(version.description)…")
+                }
+
+            case .pret(let version, _):
+                rubrique("MISE À JOUR")
+                Text("Lux Vox \(version.description) est dans vos téléchargements.")
+                    .font(.system(size: 12))
+                    .foregroundStyle(LuxColor.text(theme))
+                    .fixedSize(horizontal: false, vertical: true)
+                // L'app ne peut pas se remplacer elle-même : il y faudrait une
+                // signature Developer ID et une notarisation. Tant qu'elle ne
+                // les a pas, le dernier geste appartient à l'utilisateur, et
+                // se taire là-dessus laisserait quelqu'un croire que c'est
+                // fait.
+                murmure("Quittez Lux Vox, puis glissez la nouvelle version dans Applications.")
+                Button("Afficher dans le Finder") { amont.montreDansLeFinder() }
+                    .font(.system(size: 12))
+            }
+        }
+    }
+
+    private func murmure(_ texte: String) -> some View {
+        Text(texte)
+            .font(.system(size: 11.5))
+            .foregroundStyle(LuxColor.textTertiary(theme))
+            .fixedSize(horizontal: false, vertical: true)
+    }
+
+    private func lienDiscret(_ titre: String, action: @escaping () -> Void) -> some View {
+        Button(titre, action: action)
+            .buttonStyle(.link)
+            .font(.system(size: 11.5))
     }
 
     /// La mise en route ne se rouvre jamais d'elle-même une fois tout accordé
