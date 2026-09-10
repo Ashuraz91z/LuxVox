@@ -214,8 +214,12 @@ struct MenuBarView: View {
         }
     }
 
+    /// La mise en route ne se rouvre jamais d'elle-même une fois tout accordé
+    /// (DA §9) : c'est par ici qu'on la retrouve — pour revoir le geste, ou
+    /// reprendre un téléchargement abandonné.
     private var piedDePage: some View {
         HStack {
+            Button("Mise en route…") { controleur.ouvreMiseEnRoute() }
             Spacer()
             Button("Quitter") { NSApplication.shared.terminate(nil) }
                 .keyboardShortcut("q")
